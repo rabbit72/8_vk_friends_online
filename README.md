@@ -1,6 +1,6 @@
 # Watcher of Friends Online
 
-[TODO. There will be project description]
+This script return list your friends online in [vk.com](https://vk.com])
 
 # How to Install
 
@@ -11,6 +11,29 @@ pip install -r requirements.txt # alternatively try pip3
 ```
 
 Remember, it is recommended to use [virtualenv/venv](https://devman.org/encyclopedia/pip/pip_virtualenv/) for better isolation.
+
+# Quick start
+
+```bash
+$ python3 vk_friends_online.py
+```
+
+Running on Windows is similar.
+
+*(Possibly requires call of 'python' executive instead of just 'python3'.)*
+
+# Example
+
+```bash
+Login: my_login
+Password: 
+Friends online:
+Pope Paul
+Day Marcus
+Lawrence Ashley
+Scott Brice
+Chapman Clifton
+```
 
 # Project Goals
 
