@@ -28,11 +28,11 @@ Running on Windows is similar.
 Login: my_login
 Password: 
 Friends online:
-Pope Paul
+Chapman Clifton
 Day Marcus
 Lawrence Ashley
+Pope Paul
 Scott Brice
-Chapman Clifton
 ```
 
 # Project Goals

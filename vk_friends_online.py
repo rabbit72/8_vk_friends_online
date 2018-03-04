@@ -31,8 +31,8 @@ def get_api(login, password, app_id):
 
 def output_friends_to_console(friends_online):
     print('Friends online:')
-    for friend in friends_online:
-        print('{0} {1}'.format(friend['first_name'], friend['last_name']))
+    for friend in sorted(friends_online, key=lambda x: x['last_name']):
+        print('{0} {1}'.format(friend['last_name'], friend['first_name']))
 
 
 if __name__ == '__main__':
