@@ -2,8 +2,6 @@ import vk
 import requests
 from getpass import getpass
 
-API_VERSION = 5.73
-
 
 def get_user_login():
     return input('Login: ')
@@ -13,9 +11,9 @@ def get_user_password():
     return getpass()
 
 
-def get_online_friends(api):
-    id_friends_online = api.friends.getOnline(version=API_VERSION)
-    return api.users.get(version=API_VERSION, user_ids=id_friends_online)
+def get_online_friends(api, api_version):
+    id_friends_online = api.friends.getOnline(version=api_version)
+    return api.users.get(version=api_version, user_ids=id_friends_online)
 
 
 def get_api(login, password, app_id):
@@ -37,10 +35,11 @@ def output_friends_to_console(friends_online):
 if __name__ == '__main__':
     try:
         app_id = 6394729
+        api_version = 5.73
         login = get_user_login()
         password = get_user_password()
         api = get_api(login, password, app_id)
-        output_friends_to_console(get_online_friends(api))
+        output_friends_to_console(get_online_friends(api, api_version))
     except vk.exceptions.VkAuthError:
         exit('Authentications Error')
     except requests.exceptions.ConnectionError:
