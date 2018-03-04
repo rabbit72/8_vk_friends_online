@@ -1,32 +1,48 @@
 import vk
+import requests
+from getpass import getpass
 
-
-APP_ID = -1  # чтобы получить app_id, нужно зарегистрировать своё приложение на https://vk.com/dev
+API_VERSION = 5.73
 
 
 def get_user_login():
-    pass
+    return input('Login: ')
 
 
 def get_user_password():
-    pass
+    return getpass()
 
 
-def get_online_friends(login, password):
+def get_online_friends(api):
+    id_friends_online = api.friends.getOnline(version=API_VERSION)
+    friends = ', '.join(map(str, id_friends_online))
+    return api.users.get(version=API_VERSION, user_ids=friends)
+
+
+def get_api(login, password, app_id):
     session = vk.AuthSession(
-        app_id=APP_ID,
+        app_id=app_id,
         user_login=login,
         user_password=password,
+        scope='friends',
     )
-    api = vk.API(session)
-    # например, api.friends.get()
+    return vk.API(session)
 
 
 def output_friends_to_console(friends_online):
-    pass
+    print('Friends online:')
+    for friend in friends_online:
+        print('{0} {1}'.format(friend['first_name'], friend['last_name']))
+
 
 if __name__ == '__main__':
-    login = get_user_login()
-    password = get_user_password()
-    friends_online = get_online_friends(login, password)
-    output_friends_to_console(friends_online)
+    try:
+        app_id = 6394729
+        login = get_user_login()
+        password = get_user_password()
+        api = get_api(login, password, app_id)
+        output_friends_to_console(get_online_friends(api))
+    except vk.exceptions.VkAuthError:
+        exit('Authentications Error')
+    except requests.exceptions.ConnectionError:
+        exit('No connection')
