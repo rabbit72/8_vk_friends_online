@@ -15,8 +15,7 @@ def get_user_password():
 
 def get_online_friends(api):
     id_friends_online = api.friends.getOnline(version=API_VERSION)
-    friends = ', '.join(map(str, id_friends_online))
-    return api.users.get(version=API_VERSION, user_ids=friends)
+    return api.users.get(version=API_VERSION, user_ids=id_friends_online)
 
 
 def get_api(login, password, app_id):
